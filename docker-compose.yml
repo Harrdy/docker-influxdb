@@ -10,6 +10,7 @@ services:
       - PGID=${PGID}
     networks:
       backend:
+      frontend:
     restart: "unless-stopped"
     ports:
       - "8087:8086"
@@ -26,5 +27,7 @@ services:
           cpus: '2'
 
 networks:
+  frontend:
+    external: true
   backend:
     external: true
