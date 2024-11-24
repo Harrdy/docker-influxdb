@@ -1,0 +1,24 @@
+services:
+  influxdb:
+    container_name: influxdb
+    image: influxdb:2.7.10
+    volumes:
+      - ${MOUNT_ROOT}/influxdb2:/var/lib/influxdb2
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+    restart: "unless-stopped"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.influxdb2.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.influxdb2.entrypoints=websecure"
+      - "traefik.http.routers.influxdb2.tls=true"
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+
+networks:
+  backend:
+    external: true
