@@ -11,9 +11,11 @@ services:
     restart: "unless-stopped"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.influxdb2.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.influxdb2.entrypoints=websecure"
-      - "traefik.http.routers.influxdb2.tls=true"
+      - "traefik.http.routers.influxdb.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.influxdb.entrypoints=websecure"
+      - "traefik.http.routers.influxdb.tls=true"
+      - "traefik.http.routers.influxdb.service=influxdb"
+      - "traefik.http.services.influxdb.loadbalancer.server.port=8086"
     deploy:
       resources:
         limits:
