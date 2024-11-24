@@ -8,6 +8,8 @@ services:
       - TZ=${TZ}
       - PUID=${PUID}
       - PGID=${PGID}
+    networks:
+      backend:
     restart: "unless-stopped"
     labels:
       - "traefik.enable=true"
