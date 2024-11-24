@@ -11,6 +11,8 @@ services:
     networks:
       backend:
     restart: "unless-stopped"
+    ports:
+      - "8087:8086"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.influxdb.rule=Host(`${DOMAIN}`)"
